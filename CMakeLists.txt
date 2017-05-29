@@ -3,5 +3,5 @@ project(COMP2006_Assignment2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp Assn2-Hospital-Thomas-Herr.h)
 add_executable(COMP2006_Assignment2 ${SOURCE_FILES})
