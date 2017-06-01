@@ -4,9 +4,12 @@
  * 17S Introduction to C++ - 01 (COMP2006-17S-30694)
  */
 
+using namespace std;
+
 #include <iostream>
+#include "Assn2-Hospital-Thomas-Herr.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    get_problem();
     return 0;
 }
