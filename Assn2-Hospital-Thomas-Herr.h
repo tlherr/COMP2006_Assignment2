@@ -16,7 +16,7 @@
  */
 
 int fig_drops_min(int drops, int mins) {
-    return (drops/mins);
+    return (int) ceil(drops / mins);
 }
 
 /**
