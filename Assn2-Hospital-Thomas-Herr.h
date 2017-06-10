@@ -8,6 +8,44 @@
 #include <cstdio>
 #include <iostream>
 #include <iomanip>
+#include <cmath>
+
+/**
+ * Takes rate and drop factor as input parameters and
+ * returns drops/min (rounded to nearest whole drop) as a function value
+ */
+
+int fig_drops_min(int drops, int mins) {
+    return (drops/mins);
+}
+
+/**
+ * Takes as an input parameter the number of hours over which 1 L is to
+ * be delivered and returns ml/hr (rounded) as a function value
+ */
+
+int fig_ml_hr(int num_hours) {
+    return (1000/num_hours);
+}
+
+/**
+ * Takes as input parameters rate in mg/kg/hr, patient weight in kg, and concentration of
+ * drug in mg/ml and returns ml/hr (rounded) as function value
+ */
+
+int by_weight(float rate, int patient_weight, int concentration) {
+    return static_cast<int>((patient_weight*rate)/concentration);
+}
+
+/**
+ * Takes as input parameters rate in units/hr and concentration in units/ml, and returns ml/hr
+ * (rounded) as function value
+ *
+ */
+
+int by_units(int rate, int concentration) {
+    return (rate/concentration);
+}
 
 /**
  * Displays the user menu, then inputs and returns as the function value
@@ -30,7 +68,13 @@ int get_problem() {
         std::cout << "Enter the number of the programme you wish to solve: ";
 
         if(std::cin >> problem) {
-            break;
+            if(problem<1|problem>5) {
+                std::printf("Invalid Integer Entered. Select an integer from the menu options. Please try again \n");
+                std::cin.clear();
+                std::cin.ignore();
+            } else {
+                break;
+            }
         } else {
             std::printf("Invalid Integer Entered. Please try again \n");
             std::cin.clear();
@@ -45,7 +89,7 @@ int get_problem() {
  * Prompts the user to enter the data required for problem 1, and sends
  * this data back to the calling module vai output parameters
  */
-void get_rate_drop_factor(int* result) {
+void get_rate_drop_factor(int &result) {
     int rate;
     int drops;
 
@@ -62,7 +106,7 @@ void get_rate_drop_factor(int* result) {
     }
 
     for(;;) {
-        std::cout << "Enter tubing’s drop factor (drops/ml): ";
+        std::cout << "Enter tubing's drop factor (drops/ml): ";
 
         if(std::cin >> drops) {
             break;
@@ -73,13 +117,13 @@ void get_rate_drop_factor(int* result) {
         }
     }
 
-    result = (int *) (drops + rate);
+    result = (fig_drops_min(rate,60) * drops);
 }
 /**
  * Prompts the user to enter the data required for problem 2, and sends
  * this data back to the calling module via output parameters
  */
-void get_one_l_n_hr(int *result) {
+void get_one_l_n_hr(int &result) {
     int hours;
     for(;;) {
         std::cout << "Enter number of hours: ";
@@ -93,14 +137,14 @@ void get_one_l_n_hr(int *result) {
         }
     }
 
-    result = (int *) (1000 / hours);
+    result = fig_ml_hr(hours);
 }
 
 /**
  * Prompts the user to enter the data required for problem 3,
  * and sends this data back to the calling module via output parameters
  */
-void get_kg_rate_conc(int *result) {
+void get_kg_rate_conc(int &result) {
     float rate;
     int patient_weight;
     int concentration;
@@ -142,7 +186,7 @@ void get_kg_rate_conc(int *result) {
         }
     }
 
-    result = (int *) 6;
+    result = by_weight(rate, patient_weight, concentration);
 }
 
 /**
@@ -150,45 +194,37 @@ void get_kg_rate_conc(int *result) {
  * and sends this data back to calling module via output parameters
  */
 
-void get_units_conc(int *result) {
+void get_units_conc(int &result) {
 
-}
+    int rate;
+    int concentration;
 
-/**
- * Takes rate and drop factor as input parameters and
- * returns drops/min (rounded to nearest whole drop) as a function value
- */
 
-int fig_drops_min(int drops, int mins) {
-    return 0;
-}
+    for(;;) {
+        std::cout << "Enter rate in units/hr: ";
 
-/**
- * Takes as an input parameter the number of hours over which 1 L is to
- * be delivered and returns ml/hr (rounded) as a function value
- */
+        if(std::cin >> rate) {
+            break;
+        } else {
+            std::printf("Invalid Rate Entered. Please try again \n");
+            std::cin.clear();
+            std::cin.ignore();
+        }
+    }
 
-int fig_ml_hr(int num_hours) {
-   return 0;
-}
+    for(;;) {
+        std::cout << "Enter concentration in units/ml: ";
 
-/**
- * Takes as input parameters rate in mg/kg/hr, patient weight in kg, and concentration of
- * drug in mg/ml and returns ml/hr (rounded) as function value
- */
+        if(std::cin >> concentration) {
+            break;
+        } else {
+            std::printf("Invalid Concentration Entered. Please try again \n");
+            std::cin.clear();
+            std::cin.ignore();
+        }
+    }
 
-int by_weight(int rate, int patient_weight, int concentration) {
-   return 0;
-}
-
-/**
- * Takes as input parameters rate in units/hr and concentration in units/ml, and returns ml/hr
- * (rounded) as function value
- *
- */
-
-int by_units(int rate, int concentration) {
-   return 0;
+    result = by_units(rate, concentration);
 }
 
 #endif //COMP2006_ASSIGNMENT2_ASSN2_HOSPITAL_THOMAS_HERR_H
