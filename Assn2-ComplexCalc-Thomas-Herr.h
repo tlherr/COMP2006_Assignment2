@@ -61,6 +61,11 @@ bool ComplexNumber::processString(string input) {
     if(regex_search(input, match, operation)) {
         printf("Successfully parsed operation: %c \n", match.str().c_str()[1]);
         this->op = match.str().c_str()[1];
+
+        if(op=='-') {
+            this->imag = -this->imag;
+        }
+
     } else {
         isValid = false;
     }
@@ -75,41 +80,41 @@ string ComplexNumber::toString() {
     return fmt.str().c_str();
 }
 
-ComplexNumber add(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber add(ComplexNumber A, ComplexNumber B) {
     ComplexNumber result;
 
-    result.real = firstTerm.real + secondTerm.real;
-    result.imag = firstTerm.imag + secondTerm.imag;
+    result.real = A.real + B.real;
+    result.imag = A.imag + B.imag;
     result.op = '+';
 
     return result;
 }
 
-ComplexNumber subtract(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber subtract(ComplexNumber A, ComplexNumber B) {
     ComplexNumber result;
 
-    result.real = firstTerm.real - secondTerm.real;
-    result.imag = secondTerm.imag - secondTerm.imag;
+    result.real = A.real - B.real;
+    result.imag = B.imag - B.imag;
     result.op = '-';
 
     return result;
 }
 
-ComplexNumber multiply(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber multiply(ComplexNumber A, ComplexNumber B) {
     ComplexNumber result;
 
-    result.real = (firstTerm.real * secondTerm.real) - (firstTerm.imag * secondTerm.imag);
-    result.imag = ((firstTerm.real * secondTerm.imag) + (firstTerm.imag * secondTerm.real));
+    result.real = (A.real * B.real) - (A.imag * B.imag);
+    result.imag = ((A.real * B.imag) + (A.imag * B.real));
     result.op = '+';
 
     return result;
 }
 
-ComplexNumber divide(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber divide(ComplexNumber A, ComplexNumber B) {
     ComplexNumber result;
 
-    result.real = ((firstTerm.real * secondTerm.real) + (firstTerm.imag * secondTerm.imag))/((secondTerm.imag * secondTerm.imag) + (secondTerm.real * secondTerm.real));
-    result.imag = ((firstTerm.imag * secondTerm.real) - (firstTerm.real * secondTerm.imag))/((secondTerm.imag * secondTerm.imag) + (secondTerm.real * secondTerm.real));
+    result.real = ((A.real * B.real) + (A.imag * B.imag))/((B.imag * B.imag) + (B.real * B.real));
+    result.imag = ((A.imag * B.real) - (A.real * B.imag))/((B.imag * B.imag) + (B.real * B.real));
     result.op = '+';
 
     return result;
