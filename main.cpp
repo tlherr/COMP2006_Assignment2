@@ -8,6 +8,7 @@ using namespace std;
 
 #include <iostream>
 #include "Assn2-Hospital-Thomas-Herr.h"
+#include "Assn2-Battery-Thomas-Herr.h"
 
 void question_one();
 void question_two();
@@ -44,6 +45,9 @@ int main() {
             cout << "Invalid Selection. Exiting..." << endl;
         case 1:
             question_one();
+            break;
+        case 2:
+            question_two();
             break;
     }
 
@@ -86,4 +90,20 @@ void question_one() {
                 break;
         }
     }
+}
+
+void question_two() {
+    battery_t battery;
+    battery.name = "Automotive Battery";
+    battery.voltage = 12;
+    battery.maximum_potential_storage = 5000000;
+
+    //Power a 4 Amp light for 15 minutes
+    COMP2006_ASSIGNMENT2_ASSN2_BATTERY_THOMAS_HERR_H::power_device(4, 15*60, battery);
+    //Then find out how long the battery’s remaining energy could power an 8 Amp device.
+    COMP2006_ASSIGNMENT2_ASSN2_BATTERY_THOMAS_HERR_H::max_time(battery, 8);
+    //Recharge the battery
+    battery.recharge();
+    //Recalculate how long it could operate an 8 Amp device once fully charged
+    COMP2006_ASSIGNMENT2_ASSN2_BATTERY_THOMAS_HERR_H::max_time(battery, 8);
 }
