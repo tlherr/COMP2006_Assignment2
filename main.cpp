@@ -98,6 +98,9 @@ void question_two() {
     battery.voltage = 12;
     battery.maximum_potential_storage = 5000000;
 
+    //Start the battery off fully charged
+    battery.recharge();
+
     //Power a 4 Amp light for 15 minutes
     COMP2006_ASSIGNMENT2_ASSN2_BATTERY_THOMAS_HERR_H::power_device(4, 15*60, battery);
     //Then find out how long the battery’s remaining energy could power an 8 Amp device.

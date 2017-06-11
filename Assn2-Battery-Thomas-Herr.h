@@ -47,7 +47,10 @@ void battery_t::charge(int energy_input) {
  * @param energy_draw Measured in Joules
  */
 void battery_t::discharge(int energy_draw) {
-    this->current_energy = this->current_energy - energy_draw;
+    printf("Discharging %d \n", energy_draw);
+    int tmp_energy = this->current_energy - energy_draw;
+    this->current_energy = tmp_energy;
+    printf("Current Energy: %d \n", this->current_energy);
 }
 
 /**
@@ -93,7 +96,7 @@ int max_time(battery_t battery, int current) {
     int max_time = battery.current_energy/(current*battery.voltage);
     //Trying to solve for t (time in seconds)
     //Time = Current Energy in Joules/(Current in Amps*Voltage)
-    printf("Battery (%s %dv) could provide %d Amps of power for %d seconds \n", battery.name.c_str(), battery.voltage, current, max_time);
+    printf("Battery (%s %dv) could provide %d Amps of power for %d seconds. Current charge: %dJ \n", battery.name.c_str(), battery.voltage, current, max_time, battery.current_energy);
     return max_time;
 }
 
