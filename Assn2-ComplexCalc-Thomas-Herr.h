@@ -94,7 +94,13 @@ ComplexNumber subtract(ComplexNumber A, ComplexNumber B) {
     ComplexNumber result;
 
     result.real = A.real - B.real;
-    result.imag = B.imag - B.imag;
+
+    if(B.imag<0) {
+        //Dealing with a negative number, add it
+        result.imag = A.imag + abs(B.imag);
+    } else {
+        result.imag = A.imag - B.imag;
+    }
     result.op = '-';
 
     return result;
