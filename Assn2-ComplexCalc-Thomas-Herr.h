@@ -63,20 +63,44 @@ void ComplexNumber::toString() {
     printf("Real: %lf, Imaginary: %lf, Operator: %c \n", this->real, this->imag, this->op);
 }
 
-void add(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber add(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+    ComplexNumber result;
 
+    result.real = firstTerm.real + secondTerm.real;
+    result.imag = secondTerm.imag + secondTerm.imag;
+    result.op = '+';
+
+    return result;
 }
 
-void subtract(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber subtract(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+    ComplexNumber result;
 
+    result.real = firstTerm.real - secondTerm.real;
+    result.imag = secondTerm.imag - secondTerm.imag;
+    result.op = '-';
+
+    return result;
 }
 
-void multiply(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber multiply(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+    ComplexNumber result;
 
+    result.real = (firstTerm.real * secondTerm.real) - (firstTerm.imag * secondTerm.imag);
+    result.imag = ((firstTerm.real * secondTerm.imag) + (firstTerm.imag * secondTerm.real));
+    result.op = '+';
+
+    return result;
 }
 
-void divide(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+ComplexNumber divide(ComplexNumber firstTerm, ComplexNumber secondTerm) {
+    ComplexNumber result;
 
+    result.real = ((firstTerm.real * secondTerm.real) + (firstTerm.imag * secondTerm.imag))/((secondTerm.imag * secondTerm.imag) + (secondTerm.real * secondTerm.real));
+    result.imag = ((firstTerm.imag * secondTerm.real) - (firstTerm.real * secondTerm.imag))/((secondTerm.imag * secondTerm.imag) + (secondTerm.real * secondTerm.real));
+    result.op = '+';
+
+    return result;
 }
 
 #endif //COMP2006_ASSIGNMENT2_ASSN2_COMPLEXCALC_THOMAS_HERR_H
