@@ -127,9 +127,7 @@ void question_three() {
     //Get the input from the user
     for(;;) {
         printf("Enter the First Complex Number: A =");
-        //cin >> first_complex;
-
-        first_complex = "-23+j34";
+        cin >> first_complex;
 
         if(A.processString(first_complex)) {
             break;
@@ -142,9 +140,7 @@ void question_three() {
 
     for(;;) {
         printf("Enter the Second Complex Number: B =");
-        //cin >> second_complex;
-
-        second_complex = "42-i44";
+        cin >> second_complex;
 
         if(B.processString(second_complex)) {
             break;
