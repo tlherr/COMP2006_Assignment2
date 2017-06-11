@@ -9,7 +9,10 @@ struct ComplexNumber {
     char op = ' ';
     double imag = 0;
     bool processString(string input);
-    void toString();
+    void show() {
+        printf("Real: %lf, Imaginary: %lf, Operator: %c \n", this->real, this->imag, this->op);
+    }
+    string toString();
 };
 
 /**
@@ -18,6 +21,8 @@ struct ComplexNumber {
  * @return bool Indication if given input was able to be parsed
  */
 bool ComplexNumber::processString(string input) {
+
+    bool isValid = true;
 
     //Expecting a string in the format: 23+j34
     smatch match;
@@ -32,6 +37,8 @@ bool ComplexNumber::processString(string input) {
         firstTermResult.pop_back();
         std::stringstream firstTermStringStream(firstTermResult);
         firstTermStringStream >> this->real;
+    } else {
+        isValid = false;
     }
 
     //Parse from symbol to end of string
@@ -44,6 +51,8 @@ bool ComplexNumber::processString(string input) {
         secondTermResult.erase(0,1);
         std::stringstream secondTermStringStream(secondTermResult);
         secondTermStringStream >> this->imag;
+    } else {
+        isValid = false;
     }
 
     //Operator
@@ -52,22 +61,25 @@ bool ComplexNumber::processString(string input) {
     if(regex_search(input, match, operation)) {
         printf("Successfully parsed operation: %c \n", match.str().c_str()[1]);
         this->op = match.str().c_str()[1];
+    } else {
+        isValid = false;
     }
 
-    this->toString();
-
-    return false;
+    return isValid;
 }
 
-void ComplexNumber::toString() {
-    printf("Real: %lf, Imaginary: %lf, Operator: %c \n", this->real, this->imag, this->op);
+string ComplexNumber::toString() {
+    std::stringstream fmt;
+    fmt << this->real << this->op << 'i' << this->imag;
+
+    return fmt.str().c_str();
 }
 
 ComplexNumber add(ComplexNumber firstTerm, ComplexNumber secondTerm) {
     ComplexNumber result;
 
     result.real = firstTerm.real + secondTerm.real;
-    result.imag = secondTerm.imag + secondTerm.imag;
+    result.imag = firstTerm.imag + secondTerm.imag;
     result.op = '+';
 
     return result;

@@ -122,28 +122,86 @@ void question_three() {
     string first_complex;
     string second_complex;
 
+    int userOperation;
+
     //Get the input from the user
-    printf("Enter the First Complex Number: A =");
-    cin >> first_complex;
-    A.processString(first_complex);
+    for(;;) {
+        printf("Enter the First Complex Number: A =");
+        //cin >> first_complex;
 
-    printf("Enter the Second Complex Number: B =");
-    cin >> second_complex;
-    B.processString(second_complex);
+        first_complex = "-23+j34";
 
+        if(A.processString(first_complex)) {
+            break;
+        } else {
+            printf("Invalid complex number. Please enter in the form A+jB Where A and B are integers. \n");
+            cin.clear();
+            cin.ignore();
+        }
+    }
 
-    //Parse it to ensure it is valid
+    for(;;) {
+        printf("Enter the Second Complex Number: B =");
+        //cin >> second_complex;
+
+        second_complex = "42-i44";
+
+        if(B.processString(second_complex)) {
+            break;
+        } else {
+            printf("Invalid complex number. Please enter in the form A+jB Where A and B are integers. \n");
+            cin.clear();
+            cin.ignore();
+        }
+    }
 
     //Provide List of available operations
-    cout << "Available Operations: " << endl;
-    cout << "(1). C = A+B" << endl;
-    cout << "(2). C = A-B" << endl;
-    cout << "(3). C = A*B" << endl;
-    cout << "(4). C = A/B" << endl;
-    cout << "(5). Exit" << endl;
+    for(;;) {
+        cout << "Available Operations: " << endl;
+        cout << "(1). C = A+B" << endl;
+        cout << "(2). C = A-B" << endl;
+        cout << "(3). C = A*B" << endl;
+        cout << "(4). C = A/B" << endl;
+        cout << "(5). Exit" << endl;
+        cin >> userOperation;
 
+        if(!cin.fail()) {
+            if(userOperation>=1|userOperation<=5) {
+                break;
+            } else {
+                printf("Invalid selection \n");
+                cin.clear();
+                cin.ignore();
+            }
+        } else {
+            printf("Invalid selection \n");
+            cin.clear();
+            cin.ignore();
+        }
+    }
 
+    ComplexNumber result;
 
-    //Perform operation based on user selection
+    switch(userOperation) {
+        default:
+            cout << "Invalid Operation. Exiting...";
+            break;
+        case 1:
+            result = COMP2006_ASSIGNMENT2_ASSN2_COMPLEXCALC_THOMAS_HERR_H::add(A,B);
+            break;
+        case 2:
+            result = COMP2006_ASSIGNMENT2_ASSN2_COMPLEXCALC_THOMAS_HERR_H::subtract(A,B);
+            break;
+        case 3:
+            result = COMP2006_ASSIGNMENT2_ASSN2_COMPLEXCALC_THOMAS_HERR_H::multiply(A,B);
+            break;
+        case 4:
+            result = COMP2006_ASSIGNMENT2_ASSN2_COMPLEXCALC_THOMAS_HERR_H::divide(A,B);
+            break;
+        case 5:
+            cout << "Exiting...";
+            break;
+    }
 
+    cout << "Result :" << result.toString() << endl;
 }
