@@ -9,6 +9,7 @@ using namespace std;
 #include <iostream>
 #include "Assn2-Hospital-Thomas-Herr.h"
 #include "Assn2-Battery-Thomas-Herr.h"
+#include "Assn2-ComplexCalc-Thomas-Herr.h"
 
 void question_one();
 void question_two();
@@ -48,6 +49,9 @@ int main() {
             break;
         case 2:
             question_two();
+            break;
+        case 3:
+            question_three();
             break;
     }
 
@@ -109,4 +113,26 @@ void question_two() {
     battery.recharge();
     //Recalculate how long it could operate an 8 Amp device once fully charged
     COMP2006_ASSIGNMENT2_ASSN2_BATTERY_THOMAS_HERR_H::max_time(battery, 8);
+}
+
+void question_three() {
+    ComplexNumber A;
+    ComplexNumber B;
+
+    string first_complex;
+    string second_complex;
+
+    //Get the input from the user
+    printf("Enter the First Complex Number: A = \n");
+    cin >> first_complex;
+
+    printf("Enter the Second Complex Number: B = \n");
+    cin >> second_complex;
+
+    //Parse it to ensure it is valid
+
+    //Provide List of available operations
+
+    //Perform operation based on user selection
+
 }
