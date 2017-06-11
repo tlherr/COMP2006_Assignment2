@@ -123,15 +123,26 @@ void question_three() {
     string second_complex;
 
     //Get the input from the user
-    printf("Enter the First Complex Number: A = \n");
+    printf("Enter the First Complex Number: A =");
     cin >> first_complex;
+    A.processString(first_complex);
 
-    printf("Enter the Second Complex Number: B = \n");
+    printf("Enter the Second Complex Number: B =");
     cin >> second_complex;
+    B.processString(second_complex);
+
 
     //Parse it to ensure it is valid
 
     //Provide List of available operations
+    cout << "Available Operations: " << endl;
+    cout << "(1). C = A+B" << endl;
+    cout << "(2). C = A-B" << endl;
+    cout << "(3). C = A*B" << endl;
+    cout << "(4). C = A/B" << endl;
+    cout << "(5). Exit" << endl;
+
+
 
     //Perform operation based on user selection
 
