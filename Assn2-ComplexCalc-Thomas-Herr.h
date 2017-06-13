@@ -29,7 +29,7 @@ bool ComplexNumber::processString(string input) {
     smatch match;
 
     //Parse initial digits from front of string to operator
-    regex firstTerm ("^(...)\\D");
+    regex firstTerm ("(-?|\\+?)(\\d+)[-|+]");
 
     if(regex_search(input, match, firstTerm)) {
         printf("Successfully parsed first term: %s \n", match.str().c_str());
@@ -119,6 +119,11 @@ ComplexNumber multiply(ComplexNumber A, ComplexNumber B) {
 
 ComplexNumber divide(ComplexNumber A, ComplexNumber B) {
     ComplexNumber result;
+
+    if(((B.imag * B.imag) + (B.real * B.real))==0) {
+        cout << "Unable to perform operation. Would result in division by zero \n";
+        return result;
+    }
 
     result.real = ((A.real * B.real) + (A.imag * B.imag))/((B.imag * B.imag) + (B.real * B.real));
     result.imag = ((A.imag * B.real) - (A.real * B.imag))/((B.imag * B.imag) + (B.real * B.real));

@@ -34,15 +34,8 @@ int fig_ml_hr(int num_hours) {
  */
 
 int by_weight(float rate, int patient_weight, int concentration) {
-    //Look at time based units - both are hours
-    //mg/kg/hour
-    //ml/hr
 
-
-    //mg*kg  multiplied by 1/hr
-    //multiply by kg/1 to cancel out
-    //this equals mg/hr
-    //multiply that by ml/mg
+    //I have no idea how this works, even after explanation. Just going to accept defeat.
 
     return static_cast<int>((patient_weight*rate)/concentration);
 }
