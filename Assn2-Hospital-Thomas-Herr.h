@@ -34,6 +34,16 @@ int fig_ml_hr(int num_hours) {
  */
 
 int by_weight(float rate, int patient_weight, int concentration) {
+    //Look at time based units - both are hours
+    //mg/kg/hour
+    //ml/hr
+
+
+    //mg*kg  multiplied by 1/hr
+    //multiply by kg/1 to cancel out
+    //this equals mg/hr
+    //multiply that by ml/mg
+
     return static_cast<int>((patient_weight*rate)/concentration);
 }
 
@@ -57,9 +67,9 @@ int get_problem() {
     std::cout << std::setw(5) << "Given a medical order in:" << std::setw(10)
               << "Calculate Rate in:" << std::endl;
     std::cout << "(1) ml/hr & tubing drop factor" << std::setw(10) << "drop/min" << std::endl;
-    std::cout << "(2) ml/hr & tubing drop factor" << std::setw(10) << "ml / hr" << std::endl;
-    std::cout << "(3) ml/hr & tubing drop factor" << std::setw(10) << "ml / hr" << std::endl;
-    std::cout << "(4) ml/hr & tubing drop factor" << std::setw(10) << "ml/hr" << std::endl;
+    std::cout << "(2) 1 L for n hr" << std::setw(10) << "ml / hr" << std::endl;
+    std::cout << "(3) mg/kg/hr & concentration in mg/ml" << std::setw(10) << "ml / hr" << std::endl;
+    std::cout << "(4) units/hr & concentration in units/ml" << std::setw(10) << "ml/hr" << std::endl;
     std::cout << "(5) Exit" << std::endl;
 
     int problem;

@@ -55,6 +55,15 @@ int main() {
             break;
     }
 
+    #if defined(__linux__)
+        __pause();
+    #elif defined(__APPLE__)
+        system( "read -n 1 -s -p \"Press any key to continue...\"" );
+    #elif defined(_WIN32)
+        system("pause");
+    #elif defined(_WIN64)
+        system("pause");
+    #endif
 
     return 0;
 }
@@ -127,7 +136,8 @@ void question_three() {
     //Get the input from the user
     for(;;) {
         printf("Enter the First Complex Number: A =");
-        cin >> first_complex;
+        //Use cin.get();
+        cin >> setw(20) >> first_complex;
 
         if(A.processString(first_complex)) {
             break;

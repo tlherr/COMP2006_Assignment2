@@ -3,6 +3,7 @@
 
 #include <string>
 #include <regex>
+#include <sstream>
 
 struct ComplexNumber {
     double real = 0;
@@ -42,7 +43,7 @@ bool ComplexNumber::processString(string input) {
     }
 
     //Parse from symbol to end of string
-    regex secondTerm ("[j|i](..)$");
+    regex secondTerm ("[j|i](\\d*)");
 
     if(regex_search(input, match, secondTerm)) {
         printf("Successfully parsed second term: %s \n", match.str().c_str());
